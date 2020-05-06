@@ -5,7 +5,7 @@ export default function Navigation() {
   return (
  
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <img src="/cincyjungle.png" width="160" height="160" alt=""></img>
+       <img src="/cincyjungle.png" width="200" height="160" alt=""></img>
       <a className="navbar-brand" >Cincy Jungle</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

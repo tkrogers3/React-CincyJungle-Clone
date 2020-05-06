@@ -10,12 +10,14 @@ function App() {
    
 
       <div className="App">
+      <div className="container">
+
         <Navbar />
         <Fanposts />
         <Posts />
         <Footer />
       </div>
-
+ </div>
  
   );
 }

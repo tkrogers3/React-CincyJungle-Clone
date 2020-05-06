@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 class Posts extends React.Component {
@@ -30,36 +32,58 @@ class Posts extends React.Component {
     }
     render() {
 
-        var postCol = this.state.posts.map((item, index) => {
-            <tbody>
-                <tr>
-                    <td>{item.title}</td>
-                    <hr></hr>
-                    <td>{item.body}</td>
+        var postRow = this.state.posts.length ? this.state.posts.map((item, index) => {
+            return (
+
+                <tr key={index}>
+
+                    <td >
+                        <span className="orange ">{item.title}</span>
+                        <br></br>
+                        <em > 10 minutes ago by <span className="orange "> {item.user.username}</span></em>
+                    </td>
+
+                    <td >
+                        <span><FontAwesomeIcon className="orange" icon={faCommentAlt} /> 0</span>
+                    </td>
+
+
+
+                    <td > 20 minutes ago by <span className="orange">{item.user.username}</span></td>
                 </tr>
-            </tbody>
-               
-        });
-}
+
+
+            )
+        })
+
+            : null;
 
         return (
-            <div>
-                <div class="container MB ">
-               
-            <table> 
-                <thead>
-                    <tr>
-                        <th> Subject </th>
-                        <th> Comments </th>
-                        <th> Last Reply </th>
-                    </tr>
-                </thead>
-               {postCol}
-            </table>
-                    </div>
-                </div>
-         
+
+            <div className="table-responsive">
+                <table className="table">
+
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+
+                            <th>Comments</th>
+
+
+                            <th>Last Reply</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {postRow}
+                    </tbody>
+                </table>
+            </div>
+
+
         )
     }
 
+}
 export default Posts
