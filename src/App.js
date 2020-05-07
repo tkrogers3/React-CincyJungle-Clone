@@ -4,6 +4,7 @@ import Navbar from './Navigation.js';
 import Fanposts from './Fanposts.js';
 import Footer from './Footer.js';
 import Posts from './Posts.js';
+import  LoginRegModal  from './Register.js';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
 
       <div className="App">
       <div className="container">
-
+      
         <Navbar />
+        <LoginRegModal /> 
         <Fanposts />
         <Posts />
         <Footer />
