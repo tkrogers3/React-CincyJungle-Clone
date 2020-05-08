@@ -7,3 +7,5 @@ export default function Fanposts() {
     <h1 className="navBackground black"> FANPOSTS</h1>
   )
 }
+
+
