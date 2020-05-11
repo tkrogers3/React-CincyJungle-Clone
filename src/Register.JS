@@ -43,6 +43,7 @@ const LoginRegModal = (props) => {
       .finally(function () {
         // always executed
       });
+      setModal(!modal);
     }
 
 
@@ -76,8 +77,8 @@ const LoginRegModal = (props) => {
       <Button className=" btn-secondary custom-btn " onClick={toggle}>{buttonLabel}Login</Button>
       <Button className="btn-secondary custom-btn" onClick={toggle}>{buttonLabel}Register</Button>
       <Modal isOpen={modal} toggle={toggle} centered>
-        <ModalHeader toggle={toggle} className=" mx-auto text-center" close={closeBtn}>
-        <img src="/register.png"  className="img-fluid" width="200" height="160" alt=""></img>
+        <ModalHeader toggle={toggle} className=" mx-auto text-center" close={closeBtn}> {activeTab === 'register' ? 
+        <img src="/register.png"  className="img-fluid radius" width="200" height="160" alt=""></img> : <img src="/whodey.jpg"  className="img-fluid img-radius" width="200" height="160" alt=""></img> }
          </ModalHeader>
         <Nav tabs>
           <NavItem>
