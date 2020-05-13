@@ -1,13 +1,28 @@
+
 .App {
   text-align: center;
   margin: auto;
+  background-color: #eeeeee;
+ 
+
 }
 
+.text-start{
+text-align: start;
+}
 
 .title{
   background-color: black;
 }
 
+.post-para{
+  font-family: Mercury SSm A,Mercury SSm B,Georgia,serif;
+}
+.post-title{
+  font-family: Sentinel SSm A,Sentinel SSm B,Georgia,serif;
+  font-size: 40px;
+  line-height: 1.2;
+}
 
 App{
   background-color: #282c34;
@@ -17,6 +32,6 @@ App{
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+ 
 }
 

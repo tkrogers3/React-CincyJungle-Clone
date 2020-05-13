@@ -1,72 +1,22 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import React from 'react'
 
+function Posts() {
+    return (
+        <div className="Container  text-start">
+        <div className="Row border border-dark p-2">
+            <h1 className="post-title"> How Many Wins?</h1>
+            <p> by user.username on created_at</p>
+            <hr></hr>
+            <p className="post-para"> Now that the schedule is out, how many wins do you think the Bengals will have?
 
-class Posts extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        }
-    }
+I guess it's a pretty weak schedule based on their finish last season, but they definitely play some good teams as well.
 
-    async componentDidMount() {
-
-        let result = await axios.get('http://localhost:8000/api/posts/')
-            .then(function (response) {
-                console.log(response);
-                return response.data.data// handle success
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .finally(function () {
-                // always executed
-            });
-        console.log(result, '!!!Result!!!!');
-        this.setState({
-            posts: result
-        })
-    }
-    render() {
-
-        var postRow = this.state.posts.length ? this.state.posts.map((item, index) => {
-            return (
-
-                <tr key={index}>
-                    <td >
-                        <span className="orange ">{item.title}</span>
-                        <br></br>
-                        <em > 10 minutes ago by <span className="orange "> {item.user.username}</span></em>
-                        </td>
-                  
-                    <td > 20 minutes ago by <span className="orange">{item.user.username}</span>
-                    <br></br>
-                    <span><FontAwesomeIcon className="orange" icon={faCommentAlt}/>  0</span></td>
-                </tr>
-            )
-        }) : null;
-
-        return (
-
-            <div className="table-responsive">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                         
-                            <th>Last Reply/Comments</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {postRow}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+I'll go with six. I hope I'm wrong and they win more.</p>
+        </div>
+         
+        </div>
+        
+    )
 }
+
 export default Posts

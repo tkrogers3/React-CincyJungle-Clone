@@ -1,26 +1,32 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import Navbar from './Navigation.js';
+import Navigation from './Navigation.js';
 import Fanposts from './Fanposts.js';
 import Footer from './Footer.js';
+import Landing from './Landing.js';
 import Posts from './Posts.js';
-import  LoginRegModal  from './Register.js';
+
+
 
 function App() {
   return (
-   
 
+    <Router>
       <div className="App">
-      <div className="container">
-      
-        <Navbar />
-        <LoginRegModal /> 
-        <Fanposts />
-        <Posts />
-        <Footer />
+        <div className="container">
+
+          <Navigation />
+
+          <Fanposts />
+          <Route path="/" exact component={Landing} />
+          <Route path="/posts" component={Posts} />
+
+        
+          <Footer />
+        </div>
       </div>
- </div>
- 
+    </Router>
   );
 }
 

@@ -3,8 +3,11 @@ import React from 'react'
 
 export default function Fanposts() {
   return (
- 
-    <h1 className="navBackground black"> FANPOSTS</h1>
+    
+    <div className="App">
+    <div className="container"></div>
+    <h1 className="fanposts"> FANPOSTS</h1>
+    </div>
   )
 }
 

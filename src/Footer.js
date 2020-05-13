@@ -6,7 +6,7 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 export default function Footer() {
     return (
            <div>
-               <footer className="footer navBackground">
+               <footer className="footer navBackground mt-2">
                    <div className="row">
                    <div className="col-4 orange ">
                        <img src="/cincyjungle.png" width="150" height="120" alt=""></img>

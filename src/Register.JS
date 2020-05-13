@@ -7,14 +7,12 @@ import axios from 'axios';
 
 
 const LoginRegModal = (props) => {
-  const {
-    buttonLabel
-  } = props;
+  
 
-  const [modal, setModal] = useState(false);
-  const [activeTab, setActiveTab] = useState('Register');
-  const toggle = () => setModal(!modal);
-  const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
+  // const [modal, setModal] = useState(false);
+  // const [activeTab, setActiveTab] = useState('Register');
+  // const toggle = () => setModal(!modal);
+  // const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,8 +31,13 @@ const LoginRegModal = (props) => {
 
     axios.post('http://localhost:8000/api/login/' , loginInfo)
       .then(function (response) {
-        console.log(response);
-        return response.data.data// handle success
+        let x = JSON.stringify(response.data);
+ 
+        localStorage.setItem('auth',x);
+        props.setLoggedIn(true);
+        props.setAuth(response.data);
+        return response.data;// handle success
+     
       })
       .catch(function (error) {
         // handle error
@@ -43,7 +46,7 @@ const LoginRegModal = (props) => {
       .finally(function () {
         // always executed
       });
-      setModal(!modal);
+      props.toggleModal()
     }
 
 
@@ -69,28 +72,41 @@ const LoginRegModal = (props) => {
       .finally(function () {
         // always executed
       });
-      setModal(!modal);
+      props.toggleModal()
   }
 
   return (
-    <div>
-      <Button className=" btn-secondary custom-btn " onClick={toggle}>{buttonLabel}Login</Button>
-      <Button className="btn-secondary custom-btn" onClick={toggle}>{buttonLabel}Register</Button>
-      <Modal isOpen={modal} toggle={toggle} centered>
-        <ModalHeader toggle={toggle} className=" mx-auto text-center" close={closeBtn}> {activeTab === 'register' ? 
-        <img src="/register.png"  className="img-fluid radius" width="200" height="160" alt=""></img> : <img src="/whodey.jpg"  className="img-fluid img-radius" width="200" height="160" alt=""></img> }
+
+    
+      <Modal isOpen={props.modal} toggle={props.toggleModal} centered>
+        <ModalHeader toggle={props.toggleModal} className=" mx-auto text-center" close={props.closeBtn}> {props.activeTab === 'register' ? 
+        <img src="/register.png"  className="img-fluid radius" width="250"  alt=""></img> : <img src="/whodey.jpg"  className="img-fluid radius" width="250"  alt=""></img> }
          </ModalHeader>
         <Nav tabs>
           <NavItem>
-            <NavLink onClick={()=> setActiveTab('register')} href="#" className={activeTab === "register" ? "active" : null}>Register</NavLink>
-          </NavItem>
+            <NavLink 
+           
+            onClick={()=> props.setActiveTab('register')} href="#" 
+            className={props.activeTab === "register" ? "active" : ""}
+            id="orange">
+        
+            <h5>Register</h5>
+            </NavLink>
+           </NavItem>
+
           <NavItem>
-          <NavLink onClick={()=> setActiveTab('login')} href="#" className={activeTab === "login" ? "active" : null}>Login</NavLink>
+          <NavLink
+           onClick={()=> props.setActiveTab('login')} href="#" 
+           className={props.activeTab === "login" ? "active" : ""}
+           id="black">
+           Login
+           </NavLink>
           </NavItem>
+
         </Nav>
         <ModalBody>
           <Form >
-          {activeTab === 'register' ?
+          {props.activeTab === 'register' ?
             <FormGroup>
               <Label for="exampleName">Name</Label>
               <Input onChange={(e) => setName(e.target.value)} type="name" name="name" value={name} id="exampleName" placeholder="Please enter your name." />
@@ -102,7 +118,7 @@ const LoginRegModal = (props) => {
               <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" value={email} id="exampleEmail" placeholder="Please enter your Email address" />
             </FormGroup>
 
-            {activeTab === 'register' ?
+            {props.activeTab === 'register' ?
             <FormGroup>
               <Label for="exampleUsername">Username</Label>
               <Input onChange={(e) => setUsername(e.target.value)} type="username" name="username" value={username} id="exampleUsername" placeholder="Please select a Username." />
@@ -113,7 +129,7 @@ const LoginRegModal = (props) => {
               <Input onChange={(e) => setPassword(e.target.value)} type="password" name="password" value={password} id="examplePassword" placeholder="Please select a password." />
             </FormGroup>
 
-            {activeTab === 'register' ?
+            {props.activeTab === 'register' ?
             <FormGroup>
               <Label for="confirmPassword">Confirm Password</Label>
               <Input onChange={(e) => setConfirmPassword(e.target.value)} type="password" name="confirmPassword" value={confirmPassword} id="confirmPassword" placeholder="Please confirm your password." />
@@ -121,12 +137,12 @@ const LoginRegModal = (props) => {
 
           </Form>
         </ModalBody>
-        <ModalFooter>'
-        <Button color="primary" onClick={activeTab === 'register' ?  register : login }>Submit</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+        <ModalFooter>
+        <Button className="btn-secondary custom-btn" onClick={props.activeTab === 'register' ?  register : login }>Submit</Button>{' '}
+          <Button className="btn-secondary custom-btn" onClick={props.toggleModal}>Cancel</Button>
         </ModalFooter>
       </Modal>
-    </div>
+
   );
 }
 
