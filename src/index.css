@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.orange{
+  color:#ea6a28 !important;
+ 
+ }
+
+
+ #orange {
+    color:#ea6a28 !important;
+ }
+
+ .fanposts{
+   background-color: black !important;
+   color:#ea6a28 !important;
+ }
+ 
+ .black{
+  color: black !important;
+ }
+
+ #black{
+  color: black !important;
+ }
+
+ .navBackground {
+background-color:#ea6a28 !important;
+ }
+ .btn-secondary.custom-btn {
+	background-color: black ;
+  border-color: white;
+  font-weight: bold;
+  color:#ea6a28 !important;
+  border-radius: 70px;
+  border-width: 2px;
+}
+
+.radius{
+  border-radius: 30px ;
+}
+
+.grey-hr {
+  width:100%;
+  border:1px solid grey;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.shadow{
+  text-shadow: white 1px 1px;
+}

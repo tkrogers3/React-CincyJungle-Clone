@@ -1,19 +1,36 @@
+
 .App {
   text-align: center;
+  margin: auto;
+  background-color: #eeeeee;
+ 
+
+}
+.comment-title{
+  font-weight:bold !important;
+  color: black;
+}
+.bg-yellow{
+  background-color: #fffab4;
+}
+.text-start{
+text-align: start;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title{
+  background-color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.post-para{
+  font-family: Mercury SSm A,Mercury SSm B,Georgia,serif;
+}
+.post-title{
+  font-family: Sentinel SSm A,Sentinel SSm B,Georgia,serif;
+  font-size: 40px;
+  line-height: 1.2;
 }
 
-.App-header {
+App{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -21,18 +38,29 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+ 
 }
 
-.App-link {
-  color: #61dafb;
+.m-comment-count__bubble {
+  background-color: #ea6a28;
+  min-height: 23px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.m-comment-count__bubble {
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 900;
+  display: inline-block;
+  padding: 0 7px;
+  position: relative;
+}
+.m-comment-count__bubble:after {
+  content: '';
+  position: absolute;
+  border-top: 4px solid #292929;
+  border-left: 6px solid transparent;
+  bottom: -4px;
+  right: 4px;
+}
+  .m-comment-count__bubble:after {
+    border-top-color: #ea6a28;
 }
