@@ -43,14 +43,14 @@ function Posts(props){
                 <tr key={index}>
                     <td >
                         <span className="orange">
-                        {<Link to ="Posts" onClick={()=> props.setPostPage(post.id)}>{post.title}</Link>}</span>
+                        {<Link to ="Posts" className="orange a:hover" onClick={()=> props.setPostPage(post.id)}>{post.title}</Link>}</span>
                         <br></br>
-                        <em > {timerDifference(postTime)} by <span className="orange "> {post.user.username}</span></em>
+                        <em > Posted {timerDifference(postTime)} by <span className="orange "> {post.user.username}</span></em>
                     </td>
                     <td >
                         {post.comments.length > 0 ?
                             <React.Fragment>
-                                {timerDifference(new Date(post.comments[post.comments.length - 1].created_at))} by <span className="orange">{post.comments[post.comments.length - 1].user.username} </span>
+                               Posted {timerDifference(new Date(post.comments[post.comments.length - 1].created_at))} by <span className="orange">{post.comments[post.comments.length - 1].user.username} </span>
                                 <span className="m-comment-count__bubble">{post.comments.length}</span>
                             </React.Fragment>
                             : "No Comments"

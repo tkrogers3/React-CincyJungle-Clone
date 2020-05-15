@@ -50,3 +50,15 @@ background-color:#ea6a28 !important;
   border-radius: 30px ;
 }
 
+.grey-hr {
+  width:100%;
+  border:1px solid grey;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.shadow{
+  text-shadow: white 1px 1px;
+}

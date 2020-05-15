@@ -8,12 +8,6 @@ import axios from 'axios';
 
 const LoginRegModal = (props) => {
   
-
-  // const [modal, setModal] = useState(false);
-  // const [activeTab, setActiveTab] = useState('Register');
-  // const toggle = () => setModal(!modal);
-  // const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -31,12 +25,13 @@ const LoginRegModal = (props) => {
 
     axios.post('http://localhost:8000/api/login/' , loginInfo)
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data.user)
         let x = JSON.stringify(response.data);
         localStorage.setItem('auth',x);
         props.setLoggedIn(true);
         props.setAuth(response.data);
-        props.setToken(response.data.token);
+        // props.setToken(response.data.token);
+        // props.setUser(response.data.user);
      
      console.log("I am logged in!!");
       })
