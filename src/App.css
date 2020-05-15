@@ -6,7 +6,13 @@
  
 
 }
-
+.comment-title{
+  font-weight:bold !important;
+  color: black;
+}
+.bg-yellow{
+  background-color: #fffab4;
+}
 .text-start{
 text-align: start;
 }
@@ -35,3 +41,26 @@ App{
  
 }
 
+.m-comment-count__bubble {
+  background-color: #ea6a28;
+  min-height: 23px;
+}
+.m-comment-count__bubble {
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 900;
+  display: inline-block;
+  padding: 0 7px;
+  position: relative;
+}
+.m-comment-count__bubble:after {
+  content: '';
+  position: absolute;
+  border-top: 4px solid #292929;
+  border-left: 6px solid transparent;
+  bottom: -4px;
+  right: 4px;
+}
+  .m-comment-count__bubble:after {
+    border-top-color: #ea6a28;
+}

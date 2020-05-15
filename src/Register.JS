@@ -31,24 +31,24 @@ const LoginRegModal = (props) => {
 
     axios.post('http://localhost:8000/api/login/' , loginInfo)
       .then(function (response) {
+        console.log(response.data)
         let x = JSON.stringify(response.data);
- 
         localStorage.setItem('auth',x);
         props.setLoggedIn(true);
         props.setAuth(response.data);
-        return response.data;// handle success
+        props.setToken(response.data.token);
      
+     console.log("I am logged in!!");
       })
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
+  
       });
       props.toggleModal()
     }
 
+ 
 
   const register = (e) => {
 
