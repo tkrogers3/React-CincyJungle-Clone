@@ -28,8 +28,8 @@ const LoginRegModal = (props) => {
         console.log(response.data.user)
         let x = JSON.stringify(response.data);
         localStorage.setItem('auth',x);
-        props.setLoggedIn(true);
         props.setAuth(response.data);
+        props.setLoggedIn(true);
         // props.setToken(response.data.token);
         // props.setUser(response.data.user);
      

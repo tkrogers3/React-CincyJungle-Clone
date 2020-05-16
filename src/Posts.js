@@ -1,6 +1,50 @@
-import React from 'react'
 
+import React, { useState } from 'react';
+import { Button,Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
 function Posts(props) {
+const[title,setTitle]=useState('');
+const[body,setBody]=useState('');
+
+function handleSubmit(e){
+console.log(localStorage.getItem('auth'));
+    const postInfo = {
+        title:title,
+        body:body,
+        headers:{
+            authorization: 'Bearer ' + JSON.parse(localStorage.getItem('auth')).token
+               
+        },
+
+
+
+    }
+
+    axios.post('http://localhost:8000/api/posts/' , postInfo)
+    .then(function (response) {
+
+      console.log(response.data)
+    //   let x = JSON.stringify(response.data);
+    //   localStorage.setItem('auth',x);
+    //   props.setAuth(response.data);
+    //   props.setLoggedIn(true);
+      // props.setToken(response.data.token);
+      // props.setUser(response.data.user);
+   
+   console.log("I am logged in!!");
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+
+    });
+
+  
+
+
+console.log(title);
+console.log(body);
+}
 
     function timerDifference(createdTime) {
         let currentTime = new Date().getTime();
@@ -38,6 +82,10 @@ function Posts(props) {
 
     let postTime = new Date(post ? post.created_at : null);
     return (
+ 
+    
+
+
         post ?
             <React.Fragment>
                 <div className="Container  text-start">
@@ -74,7 +122,26 @@ function Posts(props) {
                     </div>
                     :  <h5> There are {post.comments.length} comments. <span className="orange">Add yours.</span></h5> }
             </React.Fragment>
-            : null
+            :
+
+        <Form onSubmit={handleSubmit} >
+
+        <FormGroup>
+          <Label for="exampleName">Post Title</Label>
+          <Input onChange={(e) => setTitle(e.target.value)} type="text" name="title" value={title}  placeholder="Please enter your name." />
+        </FormGroup> 
+    
+    
+        <FormGroup>
+          <Label for="exampleEmail">Post Body</Label>
+          <Input onChange={(e) => setBody(e.target.value)} type="text" name="body" value={body} placeholder="Please enter your Email address" />
+        </FormGroup>
+    
+    
+    <Button className="btn-secondary custom-btn" type="submit" >Submit</Button>{' '}
+      <Button className="btn-secondary custom-btn" onClick={props.toggleModal}>Cancel</Button>
+      </Form>
+    
     )
                     }
 
