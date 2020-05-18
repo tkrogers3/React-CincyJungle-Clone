@@ -24,7 +24,7 @@ function App() {
         console.log(error);
       })
   }, [])
-  //asdfasdf
+
   if (postsData) console.log(postsData);
   return (
 

@@ -6,8 +6,11 @@ export default function Fanposts() {
     
     <div className="App">
     <div className="container"></div>
+    
     <h1 className="fanposts"> FANPOSTS</h1>
     </div>
+
+    
   )
 }
 

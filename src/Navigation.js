@@ -19,7 +19,6 @@ const Navigation = (props) => {
   const [activeTab, setActiveTab] = useState('Register');
   const toggleModal = () => setModal(!modal);
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [token, sextToken] = useState('');
   const closeBtn = <button className="close" onClick={toggleModal}>&times;</button>;
   const {
     buttonLabel
@@ -34,8 +33,6 @@ const Navigation = (props) => {
     if (localStorage.getItem('auth') !== null) {
       setLoggedIn(true);
       setAuth(JSON.parse(localStorage.getItem('auth')));
-      // setUser(auth.user);
-      // setToken(auth.token);
     
     }
   }
@@ -84,11 +81,11 @@ const Navigation = (props) => {
               closeBtn={closeBtn}
               setLoggedIn={setLoggedIn}
               setAuth={setAuth}
+              loggedIn={loggedIn}
         
             />
 
-            {loggedIn
-            ? <React.Fragment>
+            {loggedIn ? <React.Fragment>
               <h5 className="mr-2" > Welcome, {auth.user.username}! </h5>
               <button className="btn-secondary custom-btn" onClick={userLogout}>{buttonLabel} Logout</button> </React.Fragment>
               :

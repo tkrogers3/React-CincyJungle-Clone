@@ -33,12 +33,12 @@ function timerDifference(createdTime) {
         return hours + " hours ago";
     }
 }
-function Posts(props){
+ function Posts(props) {
 
-        var postRow = props.postsData.length ? props.postsData.map((post, index) => {
+     var postRow = props.postsData.length ? props.postsData.map((post, index) => {
             var postTime = new Date(post.created_at);
            
-            return (
+           return (
 
                 <tr key={index}>
                     <td >
@@ -60,19 +60,23 @@ function Posts(props){
             )
         }) : null
 
-        return (
+     return (
 
             <div className="table-responsive border border-dark">
-                <table className="table">
-                    <thead>
-                        <tr>
+                <table className="table">      
+            
+                    <thead>                      
+                        <tr>      
                             <th>Subject</th>
-
                             <th>Last Reply/Comments</th>
+                    
+                           {/* <a href="/posts"><th button className="fanposts"> New Post</th></a> */}
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        {postRow}
+                  
+                   {postRow}
                     </tbody>
                 </table>
             </div>
@@ -80,4 +84,3 @@ function Posts(props){
     }
 
 export default Posts;
-
