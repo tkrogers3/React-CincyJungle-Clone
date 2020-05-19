@@ -1,11 +1,11 @@
 
-/* .App {
+.App {
   text-align: center;
   margin: auto;
   background-color: #eeeeee;
-  */
+ 
 
-/* }
+}
 .comment-title{
   font-weight:bold !important;
   color: black;
@@ -63,4 +63,4 @@ App{
 }
   .m-comment-count__bubble:after {
     border-top-color: #ea6a28;
-} */
+}

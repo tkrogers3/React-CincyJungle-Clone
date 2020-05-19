@@ -65,14 +65,14 @@ const Navigation = (props) => {
   return (
     <div>
       <Navbar className="navBackground mt-3" light expand="md">
-      <img src="/cincyjungle.png" width="200" height="160" alt=""></img>
+      <a href="/"><img src="/cincyjungle.png" width="200" height="160" alt=""></img></a>
           <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar><NavItem>
-                <NavLink className="black" href="/"><h3>Home</h3></NavLink>
+                {/* <NavLink className="black" href="/"><h3>Home</h3></NavLink> */}
             </NavItem>
-            
-          </Nav>
+{loggedIn ?<NavLink className="black" href="/posts"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
+              </Nav>
             <LoginRegModal
               modal={modal}
               activeTab={activeTab}
@@ -85,7 +85,7 @@ const Navigation = (props) => {
         
             />
 
-            {loggedIn ? <React.Fragment>
+            {loggedIn? <React.Fragment>
               <h5 className="mr-2" > Welcome, {auth.user.username}! </h5>
               <button className="btn-secondary custom-btn" onClick={userLogout}>{buttonLabel} Logout</button> </React.Fragment>
               :
