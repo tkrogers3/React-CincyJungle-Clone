@@ -16,6 +16,10 @@ code {
  
  }
 
+.footer{
+  text-align: center;
+  font-family: Consolas;
+}
 
  #orange {
     color:#ea6a28 !important;
@@ -24,6 +28,7 @@ code {
  .fanposts{
    background-color: black !important;
    color:#ea6a28 !important;
+   text-align: center;
  }
  
  .black{

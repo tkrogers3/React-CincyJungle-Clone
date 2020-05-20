@@ -13,6 +13,7 @@ const LoginRegModal = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  // const [loginAlert, setLoginAlert]=useState(false);
 
   const login = (e) => {
 
@@ -25,25 +26,28 @@ const LoginRegModal = (props) => {
 
     axios.post('http://localhost:8000/api/login/' , loginInfo)
       .then(function (response) {
-        console.log(response.data.user)
+        console.log(response);
+        // response.data.data - token, user
         let x = JSON.stringify(response.data);
         localStorage.setItem('auth',x);
-        props.setLoggedIn(true);
         props.setAuth(response.data);
-        // props.setToken(response.data.token);
-        // props.setUser(response.data.user);
+       props.setLoggedIn(true);
+       console.log("I am logged in!!");
+      //  setLoginAlert(false);
+       props.toggleModal()
      
-     console.log("I am logged in!!");
       })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-  
-      });
-      props.toggleModal()
-    }
 
- 
+      
+      .catch(function (error) {
+        console.log(error);
+        //  setLoginAlert(true);
+   
+      });
+   
+
+    }
+   
 
   const register = (e) => {
 
@@ -61,18 +65,22 @@ const LoginRegModal = (props) => {
         return response.data.data// handle success
       })
       .catch(function (error) {
-        // handle error
+        
+       
         console.log(error);
       })
       .finally(function () {
         // always executed
       });
+      login();
       props.toggleModal()
   }
 
   return (
 
-    
+   
+       
+
       <Modal isOpen={props.modal} toggle={props.toggleModal} centered>
         <ModalHeader toggle={props.toggleModal} className=" mx-auto text-center" close={props.closeBtn}> {props.activeTab === 'register' ? 
         <img src="/register.png"  className="img-fluid radius" width="250"  alt=""></img> : <img src="/whodey.jpg"  className="img-fluid radius" width="250"  alt=""></img> }
@@ -110,7 +118,9 @@ const LoginRegModal = (props) => {
 
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
+              
               <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" value={email} id="exampleEmail" placeholder="Please enter your Email address" />
+             <small  id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </FormGroup>
 
             {props.activeTab === 'register' ?
@@ -137,8 +147,8 @@ const LoginRegModal = (props) => {
           <Button className="btn-secondary custom-btn" onClick={props.toggleModal}>Cancel</Button>
         </ModalFooter>
       </Modal>
-
-  );
+    
+    );
 }
 
 export default LoginRegModal;

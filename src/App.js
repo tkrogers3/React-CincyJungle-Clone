@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:8000/api/posts/')
       .then(function (response) {
-        console.log(response.data.data);
+       // console.log(response.data.data);
         setPostsData(response.data.data)
       })
       .catch(function (error) {
@@ -24,8 +24,8 @@ function App() {
         console.log(error);
       })
   }, [])
-  //asdfasdf
-  if (postsData) console.log(postsData);
+
+  if (postsData) //console.log(postsData);
   return (
 
     <Router>

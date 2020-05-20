@@ -1,9 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-
-
-
 function timerDifference(createdTime) {
 
     let currentTime = new Date().getTime();
@@ -19,26 +16,35 @@ function timerDifference(createdTime) {
 
 
     //console.log({days,hours,minutes})
-    if (days > 1) {
-        return days + " days ago"
+    if (minutes < 1) {
+        return " Just now";
     }
-    if (days === 1) {
-        return days + " day ago"
+    if (minutes === 1) {
+        return "1 minute ago";
     }
     if (minutes < 60) {
         return minutes + " minutes ago";
     }
-
-    if (hours < 24) {
-        return hours + " hours ago";
+    if (hours === 1) {
+        return hours + " hour ago";
+    }
+    
+            if (hours < 24) {
+                return hours + " hours ago";
+            }
+            if (days === 1) {
+                return days + " day ago"
+            }
+    if (days > 1) {
+        return days + " days ago"
     }
 }
-function Posts(props){
+ function Posts(props) {
 
-        var postRow = props.postsData.length ? props.postsData.map((post, index) => {
+     var postRow = props.postsData.length ? props.postsData.map((post, index) => {
             var postTime = new Date(post.created_at);
            
-            return (
+           return (
 
                 <tr key={index}>
                     <td >
@@ -60,19 +66,23 @@ function Posts(props){
             )
         }) : null
 
-        return (
+     return (
 
             <div className="table-responsive border border-dark">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-
+                <table className="table">      
+            
+                    <thead>                      
+                        <tr>      
+                            <th className="text-justify">Subject</th>
                             <th>Last Reply/Comments</th>
+                    
+                           {/* <a href="/posts"><th button className="fanposts"> New Post</th></a> */}
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        {postRow}
+                  
+                   {postRow}
                     </tbody>
                 </table>
             </div>
@@ -80,4 +90,3 @@ function Posts(props){
     }
 
 export default Posts;
-

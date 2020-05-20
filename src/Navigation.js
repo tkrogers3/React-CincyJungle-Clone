@@ -1,4 +1,3 @@
-  
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -20,7 +19,6 @@ const Navigation = (props) => {
   const [activeTab, setActiveTab] = useState('Register');
   const toggleModal = () => setModal(!modal);
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [token, sextToken] = useState('');
   const closeBtn = <button className="close" onClick={toggleModal}>&times;</button>;
   const {
     buttonLabel
@@ -35,8 +33,6 @@ const Navigation = (props) => {
     if (localStorage.getItem('auth') !== null) {
       setLoggedIn(true);
       setAuth(JSON.parse(localStorage.getItem('auth')));
-      // setUser(auth.user);
-      // setToken(auth.token);
     
     }
   }
@@ -69,14 +65,14 @@ const Navigation = (props) => {
   return (
     <div>
       <Navbar className="navBackground mt-3" light expand="md">
-      <img src="/cincyjungle.png" width="200" height="160" alt=""></img>
+      <a href="/"><img src="/cincyjungle.png" width="200" height="160" alt=""></img></a>
           <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar><NavItem>
-                <NavLink className="black" href="/"><h3>Home</h3></NavLink>
+                {/* <NavLink className="black" href="/"><h3>Home</h3></NavLink> */}
             </NavItem>
-            
-          </Nav>
+{loggedIn ?<NavLink className="black" href="/posts"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
+              </Nav>
             <LoginRegModal
               modal={modal}
               activeTab={activeTab}
@@ -85,11 +81,11 @@ const Navigation = (props) => {
               closeBtn={closeBtn}
               setLoggedIn={setLoggedIn}
               setAuth={setAuth}
+              loggedIn={loggedIn}
         
             />
 
-            {loggedIn
-            ? <React.Fragment>
+            {loggedIn? <React.Fragment>
               <h5 className="mr-2" > Welcome, {auth.user.username}! </h5>
               <button className="btn-secondary custom-btn" onClick={userLogout}>{buttonLabel} Logout</button> </React.Fragment>
               :

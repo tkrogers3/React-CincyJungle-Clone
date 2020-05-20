@@ -13,10 +13,12 @@ export default function Footer() {
                    </div>
                    <div className="col-4">
                   
-                  
+                   <h5 className="footer m-5 h">  CincyJungle© </h5> 
                    </div>
                    <div className="col-4">
-                  <a href="https://twitter.com/CincyJungle"> <FontAwesomeIcon className="black float-right m-4 p-1" size="5x" icon={faTwitter} /></a> 
+                  <a href="https://twitter.com/CincyJungle"> <FontAwesomeIcon className="black float-right m-4 p-1 " size="5x" icon={faTwitter} /></a>
+                 
+                  
                    </div>
                        </div>
                </footer>
