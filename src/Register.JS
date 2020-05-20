@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
-import {Alert, Nav, NavItem, NavLink, } from 'reactstrap';
+import { Nav, NavItem, NavLink, } from 'reactstrap';
 import axios from 'axios';
 
 
@@ -13,7 +13,7 @@ const LoginRegModal = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loginAlert, setLoginAlert]=useState(false);
+  // const [loginAlert, setLoginAlert]=useState(false);
 
   const login = (e) => {
 
@@ -33,7 +33,7 @@ const LoginRegModal = (props) => {
         props.setAuth(response.data);
        props.setLoggedIn(true);
        console.log("I am logged in!!");
-       setLoginAlert(false);
+      //  setLoginAlert(false);
        props.toggleModal()
      
       })
@@ -72,6 +72,7 @@ const LoginRegModal = (props) => {
       .finally(function () {
         // always executed
       });
+      login();
       props.toggleModal()
   }
 
