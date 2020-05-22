@@ -10,13 +10,16 @@ import axios from 'axios';
 
 
 function App() {
+
+    //  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+ const API_ENDPOINT = "http://localhost:8000";
   const [postPage, setPostPage] = useState(0);
-  const [postsData, setPostsData] = useState({});
-  
+  const [postsData, setPostsData] = useState([]);
+
   useEffect(() => {
-    axios.get('http://localhost:8000/api/posts/')
+    axios.get(API_ENDPOINT+'/api/posts/')
       .then(function (response) {
-       // console.log(response.data.data);
+        console.log(response.data.data);
         setPostsData(response.data.data)
       })
       .catch(function (error) {
@@ -25,35 +28,69 @@ function App() {
       })
   }, [])
 
+
+  let timeChange = function timerDifference(createdTime) {
+    let currentTime = new Date().getTime();
+    let difference = currentTime - createdTime;
+    let days = Math.floor(difference / 86400000);
+    let hours = Math.floor(difference / 3600000);     //milliseconds per hour
+    let minutes = Math.floor(difference / 60000);      //milliseconds per minute    
+
+    if (minutes < 1) {
+      return " Just now";
+    }
+    if (minutes === 1) {
+      return "1 minute ago";
+    }
+    if (minutes < 60) {
+      return minutes + " minutes ago";
+    }
+    if (hours === 1) {
+      return hours + " hour ago";
+    }
+    if (hours < 24) {
+      return hours + " hours ago";
+    }
+    if (days === 1) {
+      return days + " day ago"
+    }
+    if (days > 1) {
+      return days + " days ago"
+    }
+  };
+
   if (postsData) //console.log(postsData);
-  return (
+    return (
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Navigation 
 
-    <Router>
-      <div className="App">
-        <div className="container">
-
-          <Navigation />
-
-          <Fanposts />
-          <Route path="/" exact>
-            <Landing
-              postsData={postsData}
-              setPostPage={setPostPage}
             />
-          </Route>
+            <Fanposts />
+            <Route path="/" exact>
+              <Landing
+                postsData={postsData}
+                setPostPage={setPostPage}
+                timeChange={timeChange}
+              />
+            </Route>
           <Route path="/posts">
-            <Posts
-             postsData={postsData}
-            postPage={postPage}
-            />
-          </Route>
-
-
-          <Footer />
+              <Posts
+                postsData={postsData}
+                setPostsData={ setPostsData}
+                postPage={postPage}
+                setPostPage={setPostPage}
+                timeChange={timeChange}
+              />
+             
+            </Route>
+      
+            <Footer />
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
 }
 
 export default App;

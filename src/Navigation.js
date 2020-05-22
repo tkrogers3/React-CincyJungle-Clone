@@ -11,6 +11,9 @@ import {
 import LoginRegModal from './Register';
 
 const Navigation = (props) => {
+ 
+  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+  //const API_ENDPOINT = "http://localhost:8000";
   const [isOpen, setIsOpen] = useState(false);
   // const [user, setUser] = useState({});
   const toggle = () => setIsOpen(!isOpen);
@@ -24,10 +27,13 @@ const Navigation = (props) => {
     buttonLabel
   } = props;
 
+  
   const activeModal = (props) => {
     setActiveTab(props)
-    toggleModal()
+   toggleModal()
   }
+
+
 
   const authenticated = (props) => {
     if (localStorage.getItem('auth') !== null) {
@@ -43,7 +49,7 @@ const Navigation = (props) => {
 
       }
 
-      axios.get('http://localhost:8000/api/logout/', logoutData)
+      axios.get(API_ENDPOINT+'/api/logout/', logoutData)
         .then(function (response) {
       console.log(response)
       
@@ -54,13 +60,13 @@ const Navigation = (props) => {
         .catch(function (error) {
           // handle error
           console.log(error);
-         
         });
       setLoggedIn(false);
       localStorage.clear();
 
     }
-
+    
+  
   useEffect(() => { authenticated() }, []) 
   return (
     <div>
@@ -68,10 +74,8 @@ const Navigation = (props) => {
       <a href="/"><img src="/cincyjungle.png" width="200" height="160" alt=""></img></a>
           <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar><NavItem>
-                {/* <NavLink className="black" href="/"><h3>Home</h3></NavLink> */}
-            </NavItem>
-{loggedIn ?<NavLink className="black" href="/posts"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
+        <Nav className="mr-auto" navbar>
+           {loggedIn ?<NavLink className="black" href="/posts"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
               </Nav>
             <LoginRegModal
               modal={modal}
@@ -82,6 +86,8 @@ const Navigation = (props) => {
               setLoggedIn={setLoggedIn}
               setAuth={setAuth}
               loggedIn={loggedIn}
+              toggle={toggle}
+      
         
             />
 

@@ -1,92 +1,62 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import {Jumbotron, Alert, Spinner } from 'reactstrap';
 
-function timerDifference(createdTime) {
-
-    let currentTime = new Date().getTime();
-    let difference = currentTime - createdTime;
-
-
-
-    /* Hours/Minutes/Seconds rounded down to even number to divide time difference by  
-    milliseconds*/
-    let days = Math.floor(difference / 86400000);
-    let hours = Math.floor(difference / 3600000);     //milliseconds per hour
-    let minutes = Math.floor(difference / 60000);      //milliseconds per minute    
-
-
-    //console.log({days,hours,minutes})
-    if (minutes < 1) {
-        return " Just now";
-    }
-    if (minutes === 1) {
-        return "1 minute ago";
-    }
-    if (minutes < 60) {
-        return minutes + " minutes ago";
-    }
-    if (hours === 1) {
-        return hours + " hour ago";
-    }
+function Posts(props) {
+   
     
-            if (hours < 24) {
-                return hours + " hours ago";
-            }
-            if (days === 1) {
-                return days + " day ago"
-            }
-    if (days > 1) {
-        return days + " days ago"
-    }
-}
- function Posts(props) {
 
-     var postRow = props.postsData.length ? props.postsData.map((post, index) => {
-            var postTime = new Date(post.created_at);
-           
-           return (
+ 
+    var postRow = props.postsData.length ? props.postsData.map((post, index) => {
+        var postTime = new Date(post.created_at);
 
-                <tr key={index}>
-                    <td >
-                        <span className="orange">
-                        {<Link to ="Posts" className="orange a:hover" onClick={()=> props.setPostPage(post.id)}>{post.title}</Link>}</span>
-                        <br></br>
-                        <em > Posted {timerDifference(postTime)} by <span className="orange "> {post.user.username}</span></em>
-                    </td>
-                    <td >
-                        {post.comments.length > 0 ?
-                            <React.Fragment>
-                               Posted {timerDifference(new Date(post.comments[post.comments.length - 1].created_at))} by <span className="orange">{post.comments[post.comments.length - 1].user.username} </span>
-                                <span className="m-comment-count__bubble">{post.comments.length}</span>
-                            </React.Fragment>
-                            : "No Comments"
-                        }</td>
+        return (
 
-                </tr>
-            )
-        }) : null
-
-     return (
-
-            <div className="table-responsive border border-dark">
-                <table className="table">      
-            
-                    <thead>                      
-                        <tr>      
-                            <th className="text-justify">Subject</th>
-                            <th>Last Reply/Comments</th>
-                    
-                           {/* <a href="/posts"><th button className="fanposts"> New Post</th></a> */}
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                  
-                   {postRow}
-                    </tbody>
-                </table>
-            </div>
+            <tr key={index}>
+                <td >
+                    <span className="orange">
+                        {<Link to="Posts" className="orange a:hover" onClick={() => props.setPostPage(post.id)}>{post.title}</Link>}</span>
+                    <br></br>
+                    <em > Posted {props.timeChange(postTime)} by <span className="orange "> {post.user.username}</span></em>
+                </td>
+                <td >
+                    {post.comments.length > 0 ?
+                        <React.Fragment>
+                            Posted {props.timeChange(new Date(post.comments[post.comments.length - 1].created_at))} by <span className="orange">{post.comments[post.comments.length - 1].user.username} </span>
+                            <span className="m-comment-count__bubble">{post.comments.length}</span>
+                        </React.Fragment>
+                        : "No Comments"
+                    }</td>
+            </tr>
         )
-    }
+    }) : null
+
+    return (
+
+        postRow ? 
+        <div className="table-responsive text-centered border border-dark">
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th className="text-centered">Subject</th>
+                        <th className="text-centered">Last Reply/Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {postRow}
+                </tbody>
+            </table>
+        </div> : 
+        
+     
+        <Jumbotron centered>
+         <Alert className="alert" color="dark">
+         <Spinner className="orange "  />
+        <h4>Loading</h4> 
+      </Alert>
+    </Jumbotron>
+ 
+    )
+}
 
 export default Posts;

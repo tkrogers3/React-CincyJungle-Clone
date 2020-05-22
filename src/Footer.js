@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons'
 
 
 export default function Footer() {
@@ -9,14 +9,12 @@ export default function Footer() {
                <footer className="footer navBackground mt-2">
                    <div className="row">
                    <div className="col-4 orange ">
-                       <img src="/cincyjungle.png" width="150" height="120" alt=""></img>
+                   <a href="https://twitter.com/CincyJungle"> <FontAwesomeIcon className="black m-4 p-1" size="4x" icon={faTwitter}/></a>
                    </div>
                    <div className="col-4">
-                  
-                   <h5 className="footer m-5 h">  CincyJungle© </h5> 
-                   </div>
+                   <h3 className="mt-3 px-auto" >Follow us on social media!</h3></div>
                    <div className="col-4">
-                  <a href="https://twitter.com/CincyJungle"> <FontAwesomeIcon className="black float-right m-4 p-1 " size="5x" icon={faTwitter} /></a>
+                  <a href="https://facebook.com/CincyJungle"> <FontAwesomeIcon className="black  m-4 p-1"  size="4x" icon={faFacebook}/></a>
                  
                   
                    </div>

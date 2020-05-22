@@ -15,7 +15,10 @@ code {
   color:#ea6a28 !important;
  
  }
-
+ 
+ .postBox {
+  background-color:#ea6a28 !important;
+ }
 .footer{
   text-align: center;
   font-family: Consolas;

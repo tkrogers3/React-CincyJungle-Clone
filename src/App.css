@@ -3,8 +3,11 @@
  
   margin: auto;
   background-color: #eeeeee;
- 
 
+}
+
+.alert{
+  text-align: center;
 }
 .comment-title{
   font-weight:bold !important;
@@ -63,4 +66,11 @@ App{
 }
   .m-comment-count__bubble:after {
     border-top-color: #ea6a28;
+}
+.text-centered{
+  text-align: center;
+}
+#modal{
+   cursor: pointer; 
+
 }
