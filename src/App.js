@@ -11,8 +11,8 @@ import axios from 'axios';
 
 function App() {
 
-    //  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
- const API_ENDPOINT = "http://localhost:8000";
+     // const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+const API_ENDPOINT = "http://localhost:8000";
   const [postPage, setPostPage] = useState(0);
   const [postsData, setPostsData] = useState([]);
 

@@ -3,7 +3,7 @@ import React, { useState, } from 'react';
 import CommentModal from './CommentModal';
 import { Link, useHistory } from "react-router-dom";
 import {
-    Card, CardHeader, CardFooter, CardBody,
+   ButtonGroup, Card, CardHeader, CardFooter, CardBody,
     CardTitle, CardText
 } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, Jumbotron, } from 'reactstrap';
@@ -26,7 +26,7 @@ function Posts(props) {
     const loginUser = JSON.parse(localStorage.getItem('auth'));
 
     let history = useHistory();
-
+    
     function handleSubmit(e) {
 
         e.preventDefault();
@@ -37,6 +37,8 @@ function Posts(props) {
                 'Accept': 'application/json',
             }
         };
+
+       
         const postInfo = {
             'user_id': auth.user.id,
             'title': title,
@@ -92,8 +94,13 @@ function Posts(props) {
                                     <h5>
                                         {post.comments.length === 1 ? `There is ${post.comments.length} comment.` : `There are ${post.comments.length} comments.`}
                                         {loginUser ? <span className="orange" id="modal" onClick={toggleModal} >Add yours</span> : "Please login or register to add yours!"}
+                   
                                     </h5>
-
+                                    {auth.user.id === post.user_id}
+                                    <ButtonGroup className="edit">
+      <Button className=" bg bg-success">Edit</Button>
+      <Button className=" bg bg-danger">Delete</Button>
+     </ButtonGroup>   :null;}
                                     <CommentModal
                                         toggle={toggle}
                                         modal={modal}
@@ -115,7 +122,7 @@ function Posts(props) {
                 <Card className="pb-2 mb-2" key={index}>
                     <CardHeader className="comment-title">{comment.title}</CardHeader>
                     <CardBody>
-                        {/* <CardTitle> by <span className="orange">{comment.user.username} </span>{props.timeChange(new Date(comment.created_at))}</CardTitle> */}
+                        <CardTitle> by<span className="orange">{comment.user.username}</span></CardTitle>
                         <CardText>{comment.body}</CardText>
                     </CardBody>
                     <CardFooter> by <span className="orange">{comment.user.username} </span>{props.timeChange(new Date(comment.created_at))}</CardFooter>

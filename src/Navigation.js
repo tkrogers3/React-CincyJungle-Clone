@@ -12,8 +12,8 @@ import LoginRegModal from './Register';
 
 const Navigation = (props) => {
  
-  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-  //const API_ENDPOINT = "http://localhost:8000";
+//const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+  const API_ENDPOINT = "http://localhost:8000";
   const [isOpen, setIsOpen] = useState(false);
   // const [user, setUser] = useState({});
   const toggle = () => setIsOpen(!isOpen);
