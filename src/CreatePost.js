@@ -1,30 +1,87 @@
 
-const[]
+
+import React, { useState, } from 'react';
+import { Link, useHistory } from "react-router-dom";
+import { Button, Form, FormGroup, Label, Input, } from 'reactstrap';
 
 
-<Modal isOpen={props.modal} toggle={props.toggleModal} centered>
-<ModalHeader toggle={props.toggleModal} className=" mx-auto text-center" close={props.closeBtn}> {props.activeTab === 'register' ? 
-<img src="/register.png"  className="img-fluid radius" width="250"  alt=""></img> : <img src="/whodey.jpg"  className="img-fluid radius" width="250"  alt=""></img> }
- </ModalHeader>
-<ModalBody>
-  <Form >
+import axios from 'axios';
 
-    <FormGroup>
-      <Label for="exampleName">Post Title</Label>
-      <Input onChange={(e) => setName(e.target.value)} type="name" name="name" value={name} id="exampleName" placeholder="Please enter your name." />
-    </FormGroup> 
+function CreatePost(props) {
+    //  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+    const API_ENDPOINT = "http://localhost:8000";
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    
+    const loginUser = JSON.parse(localStorage.getItem('auth'));
+console.log(loginUser);
+   
 
+    let history = useHistory();
+    
+    function handleSubmit(e) {
 
-    <FormGroup>
-      <Label for="exampleEmail">Post Body</Label>
-      <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" value={email} id="exampleEmail" placeholder="Please enter your Email address" />
-    </FormGroup>
+        e.preventDefault();
+        const auth = JSON.parse(localStorage.getItem('auth'))
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + auth.token,
+                'Accept': 'application/json',
+            }
+        };
 
+       
+        const postInfo = {
+            'user_id': auth.user.id,
+            'title': title,
+            'body': body,
+        }
+        console.log(postInfo);
+        axios.post(API_ENDPOINT + '/api/createpost', postInfo, config)
+            .then(function (response) {
+                console.log("This is working, line 44");
+                console.log(response.data);
+                props.setPostPage(response.data.posts.id);
+                props.setPostsData(response.data.posts)
+                history.push("/");
+                // the post has been created
+                // redirect the user to the posts page
+            })
+            .catch(function (error) {
 
-  </Form>
-</ModalBody>
-<ModalFooter>
-<Button className="btn-secondary custom-btn" onClick={}>Submit</Button>{' '}
-  <Button className="btn-secondary custom-btn" onClick={props.toggleModal}>Cancel</Button>
-</ModalFooter>
-</Modal>
+                if (error.response) {
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            });
+
+    } 
+    
+   
+   return(
+<Form onSubmit={handleSubmit}>
+<FormGroup>
+    <Label for="exampleName">Subject</Label>
+    <Input onChange={(e) => setTitle(e.target.value)} type="text" name="title" value={title} placeholder="Please enter a title." />
+</FormGroup>
+<hr></hr>
+<FormGroup>
+    <Label for="exampleEmail">Body</Label>
+    <Input onChange={(e) => setBody(e.target.value)} className="form-control" rows="3" type="textarea" name="body" value={body} placeholder="Please enter your post." />
+</FormGroup>
+
+<Button className="btn-secondary custom-btn" type="submit" >Submit</Button>{' '}
+
+<Link to="/">
+    <Button className="btn-secondary custom-btn">Cancel</Button>
+</Link>
+</Form>
+)
+}
+export default CreatePost;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {useHistory } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
@@ -9,7 +8,6 @@ const CommentModal = (props) => {
  
  //const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
   const API_ENDPOINT = "http://localhost:8000";
-  let history = useHistory();
   function handleSubmit(e) {
     console.log(e);
     e.preventDefault();

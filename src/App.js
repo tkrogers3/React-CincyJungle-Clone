@@ -5,7 +5,8 @@ import Navigation from './Navigation.js';
 import Fanposts from './Fanposts.js';
 import Footer from './Footer.js';
 import Landing from './Landing.js';
-import Posts from './Posts.js';
+import Post from './Post.js';
+import CreatePost from './CreatePost'
 import axios from 'axios';
 
 
@@ -75,8 +76,8 @@ const API_ENDPOINT = "http://localhost:8000";
                 timeChange={timeChange}
               />
             </Route>
-          <Route path="/posts">
-              <Posts
+          <Route path="/post">
+              <Post
                 postsData={postsData}
                 setPostsData={ setPostsData}
                 postPage={postPage}
@@ -85,7 +86,14 @@ const API_ENDPOINT = "http://localhost:8000";
               />
              
             </Route>
-      
+            <Route path="/createpost">
+              <CreatePost 
+                setPostsData={ setPostsData}
+                postsData={postsData}
+                postPage={postPage}
+                setPostPage={setPostPage}
+              />
+            </Route>
             <Footer />
           </div>
         </div>

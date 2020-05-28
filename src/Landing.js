@@ -2,11 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {Jumbotron, Alert, Spinner } from 'reactstrap';
 
-function Posts(props) {
+function Landing(props) {
    
-    
-
- 
     var postRow = props.postsData.length ? props.postsData.map((post, index) => {
         var postTime = new Date(post.created_at);
 
@@ -15,7 +12,7 @@ function Posts(props) {
             <tr key={index}>
                 <td >
                     <span className="orange">
-                        {<Link to="Posts" className="orange a:hover" onClick={() => props.setPostPage(post.id)}>{post.title}</Link>}</span>
+                        {<Link to="Post" className="orange a:hover" onClick={() => props.setPostPage(post.id)}>{post.title}</Link>}</span>
                     <br></br>
                     <em > Posted {props.timeChange(postTime)} by <span className="orange "> {post.user.username}</span></em>
                 </td>
@@ -59,4 +56,4 @@ function Posts(props) {
     )
 }
 
-export default Posts;
+export default Landing;
