@@ -14,7 +14,7 @@ function App() {
 
      // const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
 const API_ENDPOINT = "http://localhost:8000";
-  const [postPage, setPostPage] = useState(0);
+  const [postPage, setPostPage] = useState({});
   const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const API_ENDPOINT = "http://localhost:8000";
             </Route>
             <Route path="/createpost">
               <CreatePost 
-                setPostsData={ setPostsData}
+                setPostsData={setPostsData}
                 postsData={postsData}
                 postPage={postPage}
                 setPostPage={setPostPage}

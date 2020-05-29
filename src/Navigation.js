@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import axios from 'axios';
 import {
   Collapse,
@@ -8,9 +8,10 @@ import {
   NavLink
 } from 'reactstrap';
 import LoginRegModal from './Register';
+import { useHistory } from "react-router-dom";
 
 const CreatePost = (props) => {
- 
+  let history = useHistory();
 //const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
   const API_ENDPOINT = "http://localhost:8000";
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,7 @@ const CreatePost = (props) => {
         });
       setLoggedIn(false);
       localStorage.clear();
-
+      history.push("/");
     }
     
   

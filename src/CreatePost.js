@@ -41,9 +41,11 @@ console.log(loginUser);
             .then(function (response) {
                 console.log("This is working, line 44");
                 console.log(response.data);
-                props.setPostPage(response.data.posts.id);
+                props.setPostPage(response.data.newPost.id);
                 props.setPostsData(response.data.posts)
-                history.push("/");
+                console.log("post was created")
+                history.push("/post");
+                // history.push("/post") ;
                 // the post has been created
                 // redirect the user to the posts page
             })

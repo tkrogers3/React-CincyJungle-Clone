@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const CommentModal = (props) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
- 
+  let history = useHistory();
  //const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
   const API_ENDPOINT = "http://localhost:8000";
   function handleSubmit(e) {
@@ -20,10 +21,10 @@ const CommentModal = (props) => {
     };
 
     let parent_id = 0; // default
-    if (props.parent_id != 0) {
+    if (props.parent_id !== 0) {
       parent_id = props.parent_id;
     }
-    
+   
     const commentInfo = {
       // The comment needs to know who its parent post is. 
       // The post id is given at creation of post in the database.
@@ -41,9 +42,9 @@ const CommentModal = (props) => {
 
     axios.post(API_ENDPOINT+'/api/comment/', commentInfo, config)
       .then(function (response) {
-        console.log("This is comment data from line 31");
         console.log(response.data);
-        props.setPostsData(response.data.posts);
+ 
+    
       
        
      
