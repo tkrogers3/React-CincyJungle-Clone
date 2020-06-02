@@ -33,8 +33,8 @@ function Post(props) {
     let postTime = new Date(post ? post.created_at : null);
  
 
-    //const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-    const API_ENDPOINT = "http://localhost:8000";
+    const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+   // const API_ENDPOINT = "http://localhost:8000";
 
 
     function deletePost(post_id) {
@@ -116,7 +116,7 @@ function Post(props) {
                                         modal={modal}
                                         toggleModal={toggleModal}
                                         closeBtn={closeBtn}
-                                        post_id={props.postPage}
+                                        post_id={post.id}
                                         parent_id={0}
                                     />
                                 </div>

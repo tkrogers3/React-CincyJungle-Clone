@@ -8,8 +8,8 @@ import { Button, Form, FormGroup, Label, Input, } from 'reactstrap';
 import axios from 'axios';
 
 function CreatePost(props) {
-    //  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-    const API_ENDPOINT = "http://localhost:8000";
+     const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+   // const API_ENDPOINT = "http://localhost:8000";
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     
@@ -35,6 +35,7 @@ console.log(loginUser);
             'user_id': auth.user.id,
             'title': title,
             'body': body,
+           
         }
         console.log(postInfo);
         axios.post(API_ENDPOINT + '/api/createpost', postInfo, config)

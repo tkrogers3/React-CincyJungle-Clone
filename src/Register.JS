@@ -8,8 +8,8 @@ import axios from 'axios';
 
 const LoginRegModal = (props) => {
 
-  // const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-const API_ENDPOINT = "http://localhost:8000";
+ const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+  // const API_ENDPOINT = "http://localhost:8000";
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -37,6 +37,7 @@ const API_ENDPOINT = "http://localhost:8000";
         console.log("I am logged in!!");
         //  setLoginAlert(false);
         props.toggleModal()
+        window.location.reload(false);
 
       })
 
@@ -74,8 +75,13 @@ const API_ENDPOINT = "http://localhost:8000";
       .finally(function () {
         // always executed
       });
-    login();
-    props.toggleModal()
+      props.setAuth(response.data);
+      props.setLoggedIn(true);
+      console.log("I am logged in!!");
+      //  setLoginAlert(false);
+      props.toggleModal()
+      window.location.reload(false);
+  
   }
 
   return (

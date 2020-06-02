@@ -7,8 +7,10 @@ const CommentModal = (props) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   let history = useHistory();
- //const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-  const API_ENDPOINT = "http://localhost:8000";
+const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+  // const API_ENDPOINT = "http://localhost:8000";
+
+
   function handleSubmit(e) {
     console.log(e);
     e.preventDefault();
@@ -43,10 +45,8 @@ const CommentModal = (props) => {
     axios.post(API_ENDPOINT+'/api/comment/', commentInfo, config)
       .then(function (response) {
         console.log(response.data);
- 
-    
-      
-       
+        history.push("/")
+     window.location.reload(false);
      
       })
       .catch(function (error) {
@@ -68,7 +68,7 @@ const CommentModal = (props) => {
     <Modal isOpen={props.modal} toggle={props.toggleModal} centered>
       <Form onSubmit={handleSubmit} >
       {/* Image Fluid isnt working and I'm not sure why. The radius changes on the image. No luck in console. */}
-      <ModalHeader toggle={props.toggleModal} className=" mx-auto text-center" close={props.closeBtn}> <img src="/comments.jpg"  className="img-fluid radius" width="250"  alt=""></img>
+      <ModalHeader toggle={props.toggleModal} className="text-center" close={props.closeBtn}> <img src="/comments.jpg"  className="img-fluid radius" width="250"  alt=""></img>
       <br></br>
       Comments
        </ModalHeader>

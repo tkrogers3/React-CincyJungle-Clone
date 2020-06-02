@@ -12,8 +12,8 @@ import { useHistory } from "react-router-dom";
 
 const CreatePost = (props) => {
   let history = useHistory();
-//const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-  const API_ENDPOINT = "http://localhost:8000";
+const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+  //const API_ENDPOINT = "http://localhost:8000";
   const [isOpen, setIsOpen] = useState(false);
   // const [user, setUser] = useState({});
   const toggle = () => setIsOpen(!isOpen);
@@ -88,7 +88,7 @@ const CreatePost = (props) => {
               loggedIn={loggedIn}
               toggle={toggle}
       
-        
+
             />
 
             {loggedIn? <React.Fragment>
