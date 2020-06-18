@@ -47,6 +47,7 @@ function Landing(props) {
         return (
 
             postRow ?
+            
                 <div className="table-responsive text-centered border border-dark">
                     <table className="table">
                         <thead>

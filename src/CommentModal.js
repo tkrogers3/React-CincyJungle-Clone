@@ -8,7 +8,7 @@ const CommentModal = (props) => {
   const [body, setBody] = useState('');
   let history = useHistory();
 const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-  // const API_ENDPOINT = "http://localhost:8000";
+  //const API_ENDPOINT = "http://localhost:8000";
 
 
   function handleSubmit(e) {

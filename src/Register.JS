@@ -75,10 +75,7 @@ const LoginRegModal = (props) => {
       .finally(function () {
         // always executed
       });
-      props.setAuth(response.data);
-      props.setLoggedIn(true);
-      console.log("I am logged in!!");
-      //  setLoginAlert(false);
+     login();
       props.toggleModal()
       window.location.reload(false);
   

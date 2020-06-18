@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function CreatePost(props) {
      const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-   // const API_ENDPOINT = "http://localhost:8000";
+    //const API_ENDPOINT = "http://localhost:8000";
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     
@@ -22,6 +22,7 @@ console.log(loginUser);
     function handleSubmit(e) {
 
         e.preventDefault();
+        localStorage.removeItem('postObj');
         const auth = JSON.parse(localStorage.getItem('auth'))
         const config = {
             headers: {

@@ -34,7 +34,7 @@ function Post(props) {
  
 
     const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
-   // const API_ENDPOINT = "http://localhost:8000";
+   //const API_ENDPOINT = "http://localhost:8000";
 
 
     function deletePost(post_id) {
