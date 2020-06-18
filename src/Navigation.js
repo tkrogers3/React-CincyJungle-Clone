@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import axios from 'axios';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
   NavLink
 } from 'reactstrap';
 import LoginRegModal from './Register';
+import { useHistory } from "react-router-dom";
 
-const Navigation = (props) => {
- 
-  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+const CreatePost = (props) => {
+  let history = useHistory();
+const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
   //const API_ENDPOINT = "http://localhost:8000";
   const [isOpen, setIsOpen] = useState(false);
   // const [user, setUser] = useState({});
@@ -63,7 +63,7 @@ const Navigation = (props) => {
         });
       setLoggedIn(false);
       localStorage.clear();
-
+      history.push("/");
     }
     
   
@@ -75,7 +75,7 @@ const Navigation = (props) => {
           <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
-           {loggedIn ?<NavLink className="black" href="/posts"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
+           {loggedIn ?<NavLink className="black" href="/createpost"><button className="btn-secondary custom-btn mr-2">Create a post</button></NavLink> : null}
               </Nav>
             <LoginRegModal
               modal={modal}
@@ -88,7 +88,7 @@ const Navigation = (props) => {
               loggedIn={loggedIn}
               toggle={toggle}
       
-        
+
             />
 
             {loggedIn? <React.Fragment>
@@ -106,4 +106,4 @@ const Navigation = (props) => {
   );
 }
 
-export default Navigation;
+export default CreatePost;

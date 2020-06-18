@@ -5,15 +5,16 @@ import Navigation from './Navigation.js';
 import Fanposts from './Fanposts.js';
 import Footer from './Footer.js';
 import Landing from './Landing.js';
-import Posts from './Posts.js';
+import Post from './Post.js';
+import CreatePost from './CreatePost'
 import axios from 'axios';
 
 
 function App() {
 
-    //  const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
- const API_ENDPOINT = "http://localhost:8000";
-  const [postPage, setPostPage] = useState(0);
+const API_ENDPOINT = "https://cincyjungle.ue.r.appspot.com";
+ //const API_ENDPOINT = "http://localhost:8000";
+  const [postPage, setPostPage] = useState({});
   const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {
@@ -61,9 +62,9 @@ function App() {
 
   if (postsData) //console.log(postsData);
     return (
-      <Router>
-        <div className="App">
+        
           <div className="container">
+      <Router>
             <Navigation 
 
             />
@@ -75,8 +76,8 @@ function App() {
                 timeChange={timeChange}
               />
             </Route>
-          <Route path="/posts">
-              <Posts
+          <Route path="/post">
+              <Post
                 postsData={postsData}
                 setPostsData={ setPostsData}
                 postPage={postPage}
@@ -85,11 +86,18 @@ function App() {
               />
              
             </Route>
-      
+            <Route path="/createpost">
+              <CreatePost 
+                setPostsData={setPostsData}
+                postsData={postsData}
+                postPage={postPage}
+                setPostPage={setPostPage}
+              />
+            </Route>
             <Footer />
-          </div>
-        </div>
       </Router>
+          </div>
+       
     );
 }
 

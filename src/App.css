@@ -1,10 +1,10 @@
 
-.App {
- 
-  margin: auto;
-  background-color: #eeeeee;
+html, body{
+   height: 100vh !important;
+   margin: auto;
+   background-color: #eeeeee !important;
+  }
 
-}
 
 .alert{
   text-align: center;
@@ -33,16 +33,8 @@ text-align: start;
   line-height: 1.2;
 }
 
-App{
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
- 
-}
+
+
 
 .m-comment-count__bubble {
   background-color: #ea6a28;
@@ -73,4 +65,8 @@ App{
 #modal{
    cursor: pointer; 
 
+}
+
+.edit{
+  justify-content: end !important;
 }
