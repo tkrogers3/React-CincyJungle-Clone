@@ -1,6 +1,7 @@
 
 
 import React, { useState } from 'react';
+import { Alert } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Nav, NavItem, NavLink, } from 'reactstrap';
 import axios from 'axios';
@@ -15,6 +16,8 @@ const LoginRegModal = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  // const [visible, setVisible] = useState(true);
+  // const onDismiss = () => setVisible(false);
   // const [loginAlert, setLoginAlert]=useState(false);
 
   const login = (e) => {
@@ -85,7 +88,6 @@ const LoginRegModal = (props) => {
 
 
 
-
     <Modal isOpen={props.modal} toggle={props.toggleModal} centered>
       <ModalHeader toggle={props.toggleModal} className=" mx-auto text-center" close={props.closeBtn}> {props.activeTab === 'register' ?
         <img src="/register.png" className="img-fluid radius" width="250" alt=""></img> : <img src="/whodey.jpg" className="img-fluid radius" width="250" alt=""></img>}
@@ -111,6 +113,7 @@ const LoginRegModal = (props) => {
            </NavLink>
         </NavItem>
 
+  
       </Nav>
       <ModalBody>
         <Form >
@@ -126,6 +129,7 @@ const LoginRegModal = (props) => {
 
             <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" value={email} id="exampleEmail" placeholder="Please enter your Email address" />
             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+           {/* {setLoginAlert ?<small id="emailHelp" className="form-text text-danger">The Username/Password did not match our system. Please try again.</small> : <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> } */}
           </FormGroup>
 
           {props.activeTab === 'register' ?
@@ -151,8 +155,8 @@ const LoginRegModal = (props) => {
         <Button className="btn-secondary custom-btn" onClick={props.activeTab === 'register' ? register : login}>Submit</Button>{' '}
         <Button className="btn-secondary custom-btn" onClick={props.toggleModal}>Cancel</Button>
       </ModalFooter>
-    </Modal>
-
+      </Modal>
+  
   )}
 
 export default LoginRegModal;
